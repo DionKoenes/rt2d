@@ -5,7 +5,7 @@
  *
  * @file main.cpp
  *
- * @mainpage My Awesome Game
+ * @mainpage My Awesome Game!
  *
  * @section intro Introduction
  *
