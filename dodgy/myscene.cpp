@@ -53,8 +53,18 @@ void MyScene::update(float deltaTime)
 		myentity->scale = Point(1.0f, 1.0f);
 	}*/
 
+	//###############################################################
+	// A+S Keys move Left+Right
 	// ###############################################################
-	// Rotate color
+	if (input()->getKey(KeyCode::A)) {
+		myentity->position.x -= myentity->xSpeed * deltaTime;
+	}
+	if (input()->getKey(KeyCode::D)) {
+		myentity->position.x += myentity->xSpeed * deltaTime;
+	}
+
+	// ###############################################################
+	// Rotate Color
 	// ###############################################################
 	if (t.seconds() > 0.0333f) {
 		RGBAColor color = myentity->sprite()->color;
