@@ -17,6 +17,8 @@ class MyEntity : public Entity
 public:
 
 	float xSpeed;
+	float ySpeed;
+	float ydSpeed;
 	/// @brief Constructor
 	MyEntity();
 	/// @brief Destructor

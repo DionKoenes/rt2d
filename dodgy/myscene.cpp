@@ -17,7 +17,7 @@ MyScene::MyScene() : Scene()
 	// create a single instance of MyEntity in the middle of the screen.
 	// the Sprite is added in Constructor of MyEntity.
 	myentity = new MyEntity();
-	myentity->position = Point2(SWIDTH/2, SHEIGHT/1.2);
+	myentity->position = Point2(SWIDTH/2, SHEIGHT/1.05);
 
 	// create the scene 'tree'
 	// add myentity to this Scene as a child.
@@ -54,7 +54,7 @@ void MyScene::update(float deltaTime)
 	}*/
 
 	//###############################################################
-	// A+S Keys move Left+Right
+	// WASD Keys Movement Up-Left-Down-Right
 	// ###############################################################
 	if (input()->getKey(KeyCode::A)) {
 		myentity->position.x -= myentity->xSpeed * deltaTime;
@@ -62,13 +62,19 @@ void MyScene::update(float deltaTime)
 	if (input()->getKey(KeyCode::D)) {
 		myentity->position.x += myentity->xSpeed * deltaTime;
 	}
+	if (input()->getKey(KeyCode::W)) {
+		myentity->position.y -= myentity->ySpeed * deltaTime;
+	}
+	if (input()->getKey(KeyCode::S)) {
+		myentity->position.y += myentity->ydSpeed * deltaTime;
+	}
 
-	// ###############################################################
+	/* ###############################################################
 	// Rotate Color
 	// ###############################################################
 	if (t.seconds() > 0.0333f) {
 		RGBAColor color = myentity->sprite()->color;
 		myentity->sprite()->color = Color::rotate(color, 0.01f);
 		t.start();
-	}
+	}*/
 }

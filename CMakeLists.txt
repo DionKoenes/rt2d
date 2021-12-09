@@ -165,7 +165,7 @@ IF(MAKE_START)
 	)
 	# Copy assets to the build directory
 	file(
-		COPY start/assets
+		COPY dodgy/assets
 		DESTINATION ${CMAKE_BINARY_DIR}
 	)
 ENDIF()
