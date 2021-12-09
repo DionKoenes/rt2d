@@ -9,10 +9,9 @@
 MyEntity::MyEntity() : Entity()
 {
 	this->addSprite("assets/dodgy.tga");
-	//this->sprite()->color = RED;
 
-	scale.y = -0.30;
-	scale.x = 0.30;
+	scale.y = -0.40;
+	scale.x = 0.40;
 
 	xSpeed = 750;
 	ySpeed = 500;
