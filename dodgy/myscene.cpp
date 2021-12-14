@@ -9,6 +9,7 @@
 
 #include "myscene.h"
 
+
 MyScene::MyScene() : Scene()
 {
 	// start the timer.
@@ -19,8 +20,12 @@ MyScene::MyScene() : Scene()
 	myentity = new MyEntity();
 	myentity->position = Point2(SWIDTH/2, SHEIGHT/1.05);
 
+	background = new Background();
+	background->position = Point2(SWIDTH / 2, SHEIGHT / 2);
+
 	// create the scene 'tree'
 	// add myentity to this Scene as a child.
+	this->addChild(background);
 	this->addChild(myentity);
 }
 
@@ -29,9 +34,11 @@ MyScene::~MyScene()
 {
 	// deconstruct and delete the Tree
 	this->removeChild(myentity);
+	this->removeChild(background);
 
 	// delete myentity from the heap (there was a 'new' in the constructor)
 	delete myentity;
+	delete background;
 }
 
 void MyScene::update(float deltaTime)

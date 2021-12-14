@@ -6,23 +6,19 @@
  * @brief description of MyEntity behavior.
  */
 
-#ifndef MYENTITY_H
-#define MYENTITY_H
+#ifndef BACKGROUND_H
+#define BACKGROUND_H
 
-#include <rt2d/entity.h>
+#include <canvas.h>
 
 /// @brief The MyEntity class is the Entity implementation.
-class MyEntity : public Entity
+class Background : public Canvas
 {
 public:
-
-	float xSpeed;
-	float ySpeed;
-	float ydSpeed;
 	/// @brief Constructor
-	MyEntity();
+	Background();
 	/// @brief Destructor
-	virtual ~MyEntity();
+	virtual ~Background();
 
 	/// @brief update is automatically called every frame
 	/// @param deltaTime the elapsed time in seconds
@@ -33,4 +29,4 @@ private:
 	/* add your private declarations */
 };
 
-#endif /* MYENTITY_H */
+#endif /* BACKGROUND_H */

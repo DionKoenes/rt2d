@@ -177,6 +177,8 @@ IF(MAKE_DODGY)
 		dodgy/myentity.h
 		dodgy/myscene.cpp
 		dodgy/myscene.h
+		dodgy/background.cpp
+		dodgy/background.h
 	)
 	target_link_libraries(dodgy
 		${ALL_GRAPHICS_LIBS}

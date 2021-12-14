@@ -15,7 +15,7 @@
  */
 #include <rt2d/core.h>
 
-#include "myscene.h"
+#include <dodgy/myscene.h>
 
 /// @brief main entry point
 int main( void )
