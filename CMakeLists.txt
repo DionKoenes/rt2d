@@ -159,6 +159,12 @@ IF(MAKE_START)
 		start/myentity.h
 		start/myscene.cpp
 		start/myscene.h
+		start/background.cpp
+		start/background.h
+		start/collision.cpp
+		start/collision.h
+		start/cube.cpp
+		start/cube.h
 	)
 	target_link_libraries(start
 		${ALL_GRAPHICS_LIBS}
@@ -177,6 +183,12 @@ IF(MAKE_DODGY)
 		dodgy/myentity.h
 		dodgy/myscene.cpp
 		dodgy/myscene.h
+		dodgy/background.cpp
+		dodgy/background.h
+		dodgy/collision.cpp
+		dodgy/collision.h
+		dodgy/cube.cpp
+		dodgy/cube.h
 	)
 	target_link_libraries(dodgy
 		${ALL_GRAPHICS_LIBS}
