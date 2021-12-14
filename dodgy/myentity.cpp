@@ -26,7 +26,7 @@ MyEntity::~MyEntity()
 void MyEntity::update(float deltaTime)
 {
 	// ############################################################ //
-	// Rotate														//
+	// BorderCheck													//
 	// ############################################################ //
 	if (this->position.x >= 1228) {
 		position.x = 1228;
