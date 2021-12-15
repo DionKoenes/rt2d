@@ -23,10 +23,14 @@ MyScene::MyScene() : Scene()
 	background = new Background();
 	background->position = Point2(SWIDTH / 2, SHEIGHT / 2);
 
+	cube = new Cube();
+	cube->position = Point2(SWIDTH / 2, SHEIGHT / 2);
+
 	// create the scene 'tree'
 	// add myentity to this Scene as a child.
 	this->addChild(background);
 	this->addChild(myentity);
+	this->addChild(cube);
 }
 
 
@@ -35,8 +39,10 @@ MyScene::~MyScene()
 	// deconstruct and delete the Tree
 	this->removeChild(myentity);
 	this->removeChild(background);
+	this->removeChild(cube);
 
 	// delete myentity from the heap (there was a 'new' in the constructor)
+	delete cube;
 	delete myentity;
 	delete background;
 }
