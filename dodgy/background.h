@@ -9,10 +9,10 @@
 #ifndef BACKGROUND_H
 #define BACKGROUND_H
 
-#include <canvas.h>
+#include <entity.h>
 
 /// @brief The MyEntity class is the Entity implementation.
-class Background : public Canvas
+class Background : public Entity
 {
 public:
 	/// @brief Constructor

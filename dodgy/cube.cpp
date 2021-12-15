@@ -6,9 +6,9 @@
 
 #include "cube.h"
 
-Cube::Cube() : Canvas()
+Cube::Cube() : Entity()
 {
-	this->addSprite("assets/Cube_Blue.tga");
+	this->addSprite("assets/Cube_Pink.tga");
 
 }
 

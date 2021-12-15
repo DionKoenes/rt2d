@@ -6,7 +6,7 @@
 
 #include "background.h"
 
-Background::Background() : Canvas()
+Background::Background() : Entity()
 {
 	this->addSprite("assets/background.tga");
 

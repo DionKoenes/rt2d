@@ -9,10 +9,10 @@
 #ifndef CUBE_H
 #define CUBE_H
 
-#include <canvas.h>
+#include <entity.h>
 
 /// @brief The MyEntity class is the Entity implementation.
-class Cube : public Canvas
+class Cube : public Entity
 {
 public:
 	/// @brief Constructor
