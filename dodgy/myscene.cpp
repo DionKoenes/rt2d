@@ -8,6 +8,7 @@
 #include <sstream>
 
 #include "myscene.h"
+#include "collider.h"
 
 
 MyScene::MyScene() : Scene()
@@ -20,11 +21,35 @@ MyScene::MyScene() : Scene()
 	myentity = new MyEntity();
 	myentity->position = Point2(SWIDTH/2, SHEIGHT/1.05);
 
+	myentity->position = Point2(400, 200);
+	Line c1;
+	c1.createCircle(64, 16);
+	myentity->addLine(&c1);
+	this->addChild(myentity);
+
+	Line s2;
+	s2.addPoint(-128, -60);
+	s2.addPoint(128, -60);
+	s2.addPoint(128, 90);
+	s2.addPoint(-128, 90);
+	s2.addPoint(-128, -60);
+	myentity->addLine(&s2);
+	this->addChild(myentity);
+
 	background = new Background();
 	background->position = Point2(SWIDTH / 2, SHEIGHT / 2);
 
 	cube = new Cube();
 	cube->position = Point2(SWIDTH / 2, SHEIGHT / 2);
+
+	Line s1;
+	s1.addPoint(-128, -128);
+	s1.addPoint(128, -128);
+	s1.addPoint(128, 128);
+	s1.addPoint(-128, 128);
+	s1.addPoint(-128, -128);
+	cube->addLine(&s1);
+	this->addChild(cube);
 
 	// create the scene 'tree'
 	// add myentity to this Scene as a child.
@@ -56,6 +81,23 @@ void MyScene::update(float deltaTime)
 		this->stop();
 	}
 
+	Rectangle rect1 = Rectangle(cube->position.x, cube->position.y, 256, 128);
+	Rectangle rect2 = Rectangle(myentity->position.x, myentity->position.y, 256, 128);
+
+	Circle circ1 = Circle(myentity->position.x, myentity->position.y, 64);
+
+	if (Collider::rectangle2rectangle(rect1, rect2)) {
+		cube->line()->color = RED;
+		myentity->line()->color = RED;
+	}
+	else 
+		cube->line()->color = GREEN;
+		myentity->line()->color = GREEN;
+
+	if (Collider::circle2rectangle(circ1, rect1)) {
+		myentity->line()->color = RED;
+		cube->line()->color = RED;
+	}
 	/* ###############################################################
 	// Spacebar scales myentity
 	// ###############################################################

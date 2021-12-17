@@ -10,6 +10,9 @@ Cube::Cube() : Entity()
 {
 	this->addSprite("assets/Cube_Pink.tga");
 
+	scale.y = 0.45;
+	scale.x = 0.45;
+
 }
 
 Cube::~Cube()

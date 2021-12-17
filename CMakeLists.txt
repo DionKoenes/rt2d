@@ -181,6 +181,7 @@ IF(MAKE_DODGY)
 		dodgy/background.h
 		dodgy/cube.cpp
 		dodgy/cube.h
+		dodgy/collider.h
 	)
 	target_link_libraries(dodgy
 		${ALL_GRAPHICS_LIBS}
