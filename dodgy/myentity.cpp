@@ -28,17 +28,17 @@ void MyEntity::update(float deltaTime)
 	// ############################################################ //
 	// BorderCheck													//
 	// ############################################################ //
-	if (this->position.x >= 1228) {
-		position.x = 1228;
+	if (this->position.x >= SWIDTH - this->sprite()->width() /5 ) {
+		position.x = SWIDTH - this->sprite()->width() /5;
 	}
-	if (this->position.x <= 52) {
-		position.x = 52;
+	if (this->position.x <= 0 + this->sprite()->width() /5 ) {
+		position.x = 0 + this->sprite()->width() /5 ;
 	}
-	if (this->position.y >= 695) {
-		position.y = 695;
+	if (this->position.y >= SHEIGHT - this->sprite()->height() /7.25) {
+		position.y = SHEIGHT - this->sprite()->height() /7.25;
 	}
-	if (this->position.y <= 38) {
-		position.y = 38;
+	if (this->position.y <= 0 + this->sprite()->height() /7.25) {
+		position.y = 0 + this->sprite()->height() /7.25;
 	}
 	/* ###############################################################
 	// Rotate

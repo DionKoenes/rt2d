@@ -10,8 +10,8 @@ Background::Background() : Entity()
 {
 	this->addSprite("assets/background.tga");
 
-	scale.y = 1280;
-	scale.x = 720;
+	scale.y = 620;
+	scale.x = 960;
 
 }
 
