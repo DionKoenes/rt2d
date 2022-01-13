@@ -81,18 +81,19 @@ void MyScene::update(float deltaTime)
 		this->stop();
 	}
 
-	Rectangle rect1 = Rectangle(cube->position.x, cube->position.y, 256, 128);
-	Rectangle rect2 = Rectangle(myentity->position.x, myentity->position.y, 256, 128);
+	Rectangle rect1 = Rectangle(cube->position.x, cube->position.y, 256*cube->scale.x, 128*cube->scale.y);
+	Rectangle rect2 = Rectangle(myentity->position.x, myentity->position.y, 256*myentity->scale.x, 128*myentity->scale.y);
 
-	Circle circ1 = Circle(myentity->position.x, myentity->position.y, 64);
+	Circle circ1 = Circle(myentity->position.x, myentity->position.y, 64*myentity->scale.y);
 
 	if (Collider::rectangle2rectangle(rect1, rect2)) {
 		cube->line()->color = RED;
 		myentity->line()->color = RED;
 	}
-	else 
+	else {
 		cube->line()->color = GREEN;
 		myentity->line()->color = GREEN;
+	}
 
 	if (Collider::circle2rectangle(circ1, rect1)) {
 		myentity->line()->color = RED;
