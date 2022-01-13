@@ -22,6 +22,7 @@ MyScene::MyScene() : Scene()
 	myentity->position = Point2(SWIDTH/2, SHEIGHT/1.05);
 
 	myentity->position = Point2(400, 200);
+
 	Line c1;
 	c1.createCircle(64, 16);
 	myentity->addLine(&c1);
@@ -81,8 +82,8 @@ void MyScene::update(float deltaTime)
 		this->stop();
 	}
 
-	Rectangle rect1 = Rectangle(cube->position.x, cube->position.y, 256*cube->scale.x, 128*cube->scale.y);
-	Rectangle rect2 = Rectangle(myentity->position.x, myentity->position.y, 256*myentity->scale.x, 128*myentity->scale.y);
+	Rectangle rect1 = Rectangle(cube->position.x, cube->position.y, 128*cube->scale.x, 128*cube->scale.y);
+	Rectangle rect2 = Rectangle(myentity->position.x, myentity->position.y, 200*myentity->scale.x, -200*myentity->scale.y);
 
 	Circle circ1 = Circle(myentity->position.x, myentity->position.y, 64*myentity->scale.y);
 
