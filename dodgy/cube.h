@@ -9,14 +9,18 @@
 #ifndef CUBE_H
 #define CUBE_H
 
-#include <entity.h>
+#include "extraentity.h"
 
 /// @brief The MyEntity class is the Entity implementation.
-class Cube : public Entity
+class Cube : public extraentity
 {
 public:
 	/// @brief Constructor
 	Cube();
+
+	Vector2 velocity = Vector2(0, 0);
+	float ySpeed;
+
 	/// @brief Destructor
 	virtual ~Cube();
 

@@ -6,12 +6,18 @@
 
 #include "cube.h"
 
-Cube::Cube() : Entity()
+Cube::Cube() : extraentity()
 {
 	this->addSprite("assets/Cube_Pink.tga");
 
-	scale.y = 0.45;
-	scale.x = 0.45;
+	width = 64;
+	height = 64;
+
+	this->sprite()->size = Point2(width, height);
+
+
+
+	ySpeed = 100;
 
 }
 
@@ -22,12 +28,5 @@ Cube::~Cube()
 
 void Cube::update(float deltaTime)
 {
-
-	/* ###############################################################
-	// Rotate
-	// ###############################################################
-	this->rotation.z += HALF_PI * deltaTime; // 90 deg/sec
-	if (this->rotation.z > TWO_PI) {
-		this->rotation.z -= TWO_PI;
-	}*/
+	position.y += ySpeed * deltaTime;
 }

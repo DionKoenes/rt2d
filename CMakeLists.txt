@@ -182,6 +182,7 @@ IF(MAKE_DODGY)
 		dodgy/cube.cpp
 		dodgy/cube.h
 		dodgy/collider.h
+		dodgy/extraentity.h
 	)
 	target_link_libraries(dodgy
 		${ALL_GRAPHICS_LIBS}

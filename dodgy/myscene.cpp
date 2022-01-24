@@ -14,7 +14,12 @@
 MyScene::MyScene() : Scene()
 {
 	// start the timer.
-	t.start();
+	spawntimer.start();
+	srand(time(NULL));
+
+	background = new Background();
+	background->position = Point2(SWIDTH / 2, SHEIGHT / 2);
+	this->addChild(background);
 
 	// create a single instance of MyEntity in the middle of the screen.
 	// the Sprite is added in Constructor of MyEntity.
@@ -23,39 +28,30 @@ MyScene::MyScene() : Scene()
 
 	myentity->position = Point2(400, 200);
 
-	Line c1;
-	c1.createCircle(64, 16);
-	myentity->addLine(&c1);
-	this->addChild(myentity);
-
-	Line s2;
-	s2.addPoint(-128, -60);
-	s2.addPoint(128, -60);
-	s2.addPoint(128, 90);
-	s2.addPoint(-128, 90);
-	s2.addPoint(-128, -60);
-	myentity->addLine(&s2);
-	this->addChild(myentity);
-
-	background = new Background();
-	background->position = Point2(SWIDTH / 2, SHEIGHT / 2);
-
-	cube = new Cube();
-	cube->position = Point2(SWIDTH / 2, SHEIGHT / 2);
-
-	Line s1;
-	s1.addPoint(-128, -128);
-	s1.addPoint(128, -128);
-	s1.addPoint(128, 128);
-	s1.addPoint(-128, 128);
-	s1.addPoint(-128, -128);
-	cube->addLine(&s1);
-	this->addChild(cube);
-
 	// create the scene 'tree'
 	// add myentity to this Scene as a child.
-	this->addChild(background);
 	this->addChild(myentity);
+
+}
+
+void MyScene::spawnCubeRandom()
+{
+	int max = SWIDTH - 32;
+	int min = 0 + 32;
+	int random = rand() % (max - min) + min;
+
+	if (spawntimer.seconds() >= 0.75)
+	{
+		spawnCube(random, 0 - 32);
+		spawntimer.start();
+	}
+}
+
+void MyScene::spawnCube(int xpos, int ypos)
+{
+	Cube* cube = new Cube();
+	cube->position = Point2(xpos, ypos);
+	cubes.push_back(cube);
 	this->addChild(cube);
 }
 
@@ -65,16 +61,36 @@ MyScene::~MyScene()
 	// deconstruct and delete the Tree
 	this->removeChild(myentity);
 	this->removeChild(background);
-	this->removeChild(cube);
 
 	// delete myentity from the heap (there was a 'new' in the constructor)
-	delete cube;
 	delete myentity;
 	delete background;
+
+	int sizeCubes = cubes.size();
+	for (int i = 0; i < sizeCubes; i++)
+	{
+		this->removeChild(cubes[i]);
+		delete cubes[i];
+	}
+
 }
+
+void MyScene::updateCubes(float deltaTime)
+{
+	for (int i = cubes.size() - 1; i >= 0; i--) { // backwards!!!
+		if (cubes[i]->position.y > SHEIGHT) {
+			removeChild(cubes[i]);
+			delete cubes[i]; // delete from the heap first
+			cubes.erase(cubes.begin() + i); // then, remove from the list
+		}
+	}
+}
+
 
 void MyScene::update(float deltaTime)
 {
+
+	spawnCubeRandom();
 	// ###############################################################
 	// Escape key stops the Scene
 	// ###############################################################
@@ -82,33 +98,16 @@ void MyScene::update(float deltaTime)
 		this->stop();
 	}
 
-	Rectangle rect1 = Rectangle(cube->position.x, cube->position.y, 128*cube->scale.x, 128*cube->scale.y);
-	Rectangle rect2 = Rectangle(myentity->position.x, myentity->position.y, 200*myentity->scale.x, -200*myentity->scale.y);
-
-	Circle circ1 = Circle(myentity->position.x, myentity->position.y, 64*myentity->scale.y);
-
-	if (Collider::rectangle2rectangle(rect1, rect2)) {
-		cube->line()->color = RED;
-		myentity->line()->color = RED;
-	}
-	else {
-		cube->line()->color = GREEN;
-		myentity->line()->color = GREEN;
+	int sizeCubes = cubes.size();
+	for (int i = 0; i < sizeCubes; i++)
+	{
+		if (Collider::circle2rectangle(myentity, cubes[i])) {
+			this->stop();
+		}
 	}
 
-	if (Collider::circle2rectangle(circ1, rect1)) {
-		myentity->line()->color = RED;
-		cube->line()->color = RED;
-	}
-	/* ###############################################################
-	// Spacebar scales myentity
-	// ###############################################################
-	if (input()->getKeyDown(KeyCode::Space)) {
-		myentity->scale = Point(0.5f, 0.5f);
-	}
-	if (input()->getKeyUp(KeyCode::Space)) {
-		myentity->scale = Point(1.0f, 1.0f);
-	}*/
+
+	updateCubes(deltaTime);
 
 	//###############################################################
 	// WASD Keys Movement Up-Left-Down-Right

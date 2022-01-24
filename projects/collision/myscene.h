@@ -8,7 +8,9 @@
 #define MYSCENE_H
 
 #include <rt2d/scene.h>
+#include "cube.h"
 #include "shape.h"
+
 
 class MyScene : public Scene
 {
@@ -17,6 +19,7 @@ public:
 	virtual ~MyScene();
 
 	virtual void update(float deltaTime);
+	virtual void updateCubes(float deltaTime);
 
 private:
 	Shape* square1;
@@ -25,4 +28,6 @@ private:
 	Shape* circle2;
 };
 
+Timer t;
+std::vector<Cube*> cubes;
 #endif /* MYSCENE_H */

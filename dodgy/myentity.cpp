@@ -6,12 +6,16 @@
 
 #include "myentity.h"
 
-MyEntity::MyEntity() : Entity()
+MyEntity::MyEntity() : extraentity()
 {
 	this->addSprite("assets/dodgy.tga");
 
-	scale.y = -0.40;
-	scale.x = 0.40;
+	width = 100;
+	height = -100;
+
+	this->sprite()->size = Point2(width, height);
+
+	radius = 0.2;
 
 	xSpeed = 750;
 	ySpeed = 500;
