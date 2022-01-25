@@ -10,6 +10,7 @@
 #define MYSCENE_H
 
 #include <rt2d/scene.h>
+#include <rt2d/text.h>
 #include <vector>
 #include "myentity.h"
 #include "background.h"
@@ -39,6 +40,9 @@ private:
 	Background* background;
 	/// @brief a Timer to rotate the color every n seconds
 	Timer spawntimer;
+	Timer scoretimer;
+	Text* scoretext;
+	int score;
 
 	std::vector<Cube*> cubes;
 };

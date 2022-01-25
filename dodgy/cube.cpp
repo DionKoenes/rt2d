@@ -17,7 +17,7 @@ Cube::Cube() : extraentity()
 
 
 
-	ySpeed = 100;
+	ySpeed = 250;
 
 }
 

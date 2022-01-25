@@ -15,11 +15,18 @@ MyScene::MyScene() : Scene()
 {
 	// start the timer.
 	spawntimer.start();
+	scoretimer.start();
 	srand(time(NULL));
 
 	background = new Background();
 	background->position = Point2(SWIDTH / 2, SHEIGHT / 2);
 	this->addChild(background);
+
+	scoretext = new Text();
+	scoretext->position.x = 50;
+	scoretext->position.y = 75;
+	score = 0;
+	this->addChild(scoretext);
 
 	// create a single instance of MyEntity in the middle of the screen.
 	// the Sprite is added in Constructor of MyEntity.
@@ -40,7 +47,7 @@ void MyScene::spawnCubeRandom()
 	int min = 0 + 32;
 	int random = rand() % (max - min) + min;
 
-	if (spawntimer.seconds() >= 0.75)
+	if (spawntimer.seconds() >=  0.50)
 	{
 		spawnCube(random, 0 - 32);
 		spawntimer.start();
@@ -61,10 +68,12 @@ MyScene::~MyScene()
 	// deconstruct and delete the Tree
 	this->removeChild(myentity);
 	this->removeChild(background);
+	this->removeChild(scoretext);
 
 	// delete myentity from the heap (there was a 'new' in the constructor)
 	delete myentity;
 	delete background;
+	delete scoretext;
 
 	int sizeCubes = cubes.size();
 	for (int i = 0; i < sizeCubes; i++)
@@ -89,6 +98,10 @@ void MyScene::updateCubes(float deltaTime)
 
 void MyScene::update(float deltaTime)
 {
+	if (scoretimer.seconds() >= 0.1)
+	{
+		score += 2;
+	}
 
 	spawnCubeRandom();
 	// ###############################################################
@@ -121,16 +134,11 @@ void MyScene::update(float deltaTime)
 	if (input()->getKey(KeyCode::W)) {
 		myentity->position.y -= myentity->ySpeed * deltaTime;
 	}
-	if (input()->getKey(KeyCode::S)) {
+	{
 		myentity->position.y += myentity->ydSpeed * deltaTime;
 	}
 
-	/* ###############################################################
-	// Rotate Color
-	// ###############################################################
-	if (t.seconds() > 0.0333f) {
-		RGBAColor color = myentity->sprite()->color;
-		myentity->sprite()->color = Color::rotate(color, 0.01f);
-		t.start();
-	}*/
+	std::string st = "Score: ";
+	st += std::to_string(score);
+	scoretext->message(st);
 }
