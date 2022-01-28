@@ -21,6 +21,7 @@ MyScene::MyScene() : Scene()
 	background = new Background();
 	background->position = Point2(SWIDTH / 2, SHEIGHT / 2);
 	this->addChild(background);
+	int index = 0; //background
 
 	scoretext = new Text();
 	scoretext->position.x = 50;
@@ -47,7 +48,7 @@ void MyScene::spawnCubeRandom()
 	int min = 0 + 32;
 	int random = rand() % (max - min) + min;
 
-	if (spawntimer.seconds() >=  0.50)
+	if (spawntimer.seconds() >=  spawnSpeed)
 	{
 		spawnCube(random, 0 - 32);
 		spawntimer.start();
@@ -58,6 +59,7 @@ void MyScene::spawnCube(int xpos, int ypos)
 {
 	Cube* cube = new Cube();
 	cube->position = Point2(xpos, ypos);
+	cube->ySpeed = cubeYSpeed;
 	cubes.push_back(cube);
 	this->addChild(cube);
 }
@@ -104,6 +106,17 @@ void MyScene::update(float deltaTime)
 	}
 
 	spawnCubeRandom();
+
+	//Speed Cubes based on score
+
+
+	if (score >= speedScore)
+	{
+		cubeYSpeed += 100;
+		spawnSpeed -= 0.10;
+		speedScore += 10000;
+	}
+
 	// ###############################################################
 	// Escape key stops the Scene
 	// ###############################################################

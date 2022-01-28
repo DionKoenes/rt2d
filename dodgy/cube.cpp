@@ -12,13 +12,8 @@ Cube::Cube() : extraentity()
 
 	width = 64;
 	height = 64;
-
-	this->sprite()->size = Point2(width, height);
-
-
-
 	ySpeed = 250;
-
+	this->sprite()->size = Point2(width, height);
 }
 
 Cube::~Cube()
@@ -29,4 +24,5 @@ Cube::~Cube()
 void Cube::update(float deltaTime)
 {
 	position.y += ySpeed * deltaTime;
+
 }

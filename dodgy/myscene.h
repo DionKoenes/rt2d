@@ -30,6 +30,9 @@ public:
 	/// @return void
 	virtual void update(float deltaTime);
 	virtual void updateCubes(float deltaTime);
+	float spawnSpeed = 0.5;
+	float speedScore = 10000;
+	int cubeYSpeed = 250;
 
 private:
 
